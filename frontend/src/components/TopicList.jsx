@@ -21,10 +21,12 @@ const sampleDataForTopicList = [
   },
 ];
 
-const TopicList = () => {
+const TopicList = (props) => {
+  const { topics } = props;
+
   return (
     <div className="top-nav-bar__topic-list">
-      {sampleDataForTopicList.map((topic) => (
+      {topics.map((topic) => (
         <TopicListItem key={topic.id} topic={topic} />
       ))}
     </div>

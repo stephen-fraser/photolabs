@@ -1,15 +1,22 @@
 import React from "react";
 
-import "../styles/TopNavigationBar.scss";
+// Components
 import TopicList from "./TopicList";
 import FavBadge from "./FavBadge";
 
-const TopNavigation = () => {
+// SASS
+import "../styles/TopNavigationBar.scss";
+
+// Data
+import topics from "mocks/topics";
+
+const TopNavigation = (props) => {
+  const { isFavPhotoExist } = props;
   return (
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>
-      <TopicList />
-      <FavBadge />
+      <TopicList topics={topics} />
+      <FavBadge isFavPhotoExist={isFavPhotoExist} />
     </div>
   );
 };

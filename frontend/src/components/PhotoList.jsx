@@ -1,8 +1,12 @@
 import React from "react";
 
-import "../styles/PhotoList.scss";
+// Components
 import PhotoListItem from "./PhotoListItem";
 
+// SASS
+import "../styles/PhotoList.scss";
+
+// Initial tester data
 const sampleDataForPhotoList = [
   {
     id: "1",
@@ -57,11 +61,17 @@ const sampleDataForPhotoList = [
   },
 ];
 
-const PhotoList = () => {
+const PhotoList = (props) => {
+  const { photos, toggleFavs, isFav } = props;
   return (
     <ul className="photo-list">
-      {sampleDataForPhotoList.map((item) => (
-        <PhotoListItem key={item.id} photo={item} />
+      {photos.map((photo) => (
+        <PhotoListItem
+          key={photo.id}
+          photo={photo}
+          toggleFavs={toggleFavs}
+          isFav={isFav}
+        />
       ))}
     </ul>
   );

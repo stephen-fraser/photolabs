@@ -1,11 +1,22 @@
-import React from 'react';
+import React from "react";
 
-import '../styles/HomeRoute.scss';
+//components
+import TopNavigation from "components/TopNavigationBar";
+import PhotoList from "components/PhotoList";
 
-const HomeRoute = () => {
+// SASS
+import "../styles/HomeRoute.scss";
+
+//Data
+import photos from "mocks/photos";
+
+const HomeRoute = (props) => {
+  const { toggleFavs, isFav, isFavPhotoExist } = props;
+
   return (
     <div className="home-route">
-      {/* Insert React */}
+      <TopNavigation isFavPhotoExist={isFavPhotoExist} />
+      <PhotoList photos={photos} toggleFavs={toggleFavs} isFav={isFav} />
     </div>
   );
 };
