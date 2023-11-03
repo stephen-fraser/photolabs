@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import HomeRoute from "routes/HomeRoute";
-// import PhotoList from "components/PhotoList";
-// import TopNavigation from "components/TopNavigationBar";
-// import TopicList from "components/TopicList";
-// import TopicListItem from "components/TopicListItem";
-// import PhotoListItem from "./components/PhotoListItem";
 import "./App.scss";
+import PhotoDetailsModal from "routes/PhotoDetailsModal";
+
+//Data
+import photos from "mocks/photos";
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
@@ -27,16 +26,36 @@ const App = () => {
   // helper variable to send down as a prop to determine if there are any liked photos (returns boolean)
   const isFavPhotoExist = favs.length > 0;
 
+  // boolean variable for modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const toggleModal = () => setIsModalOpen(!isModalOpen); // ? true : false);
+
+  const [photoData, setPhotoData] = useState([]);
+
+  const sendPhotoData = (photoObj) => {
+    setPhotoData(photoObj);
+  };
+
   return (
     <div className="App">
-      {/* {Array.from(Array(3)).map((_, index) => (
-        <PhotoListItem key={index} photo={sampleDataForPhotoListItem} />
-      ))} */}
       <HomeRoute
         toggleFavs={toggleFavs}
         isFav={isFav}
         isFavPhotoExist={isFavPhotoExist}
+        toggleModal={toggleModal}
+        sendPhotoData={sendPhotoData}
+        photos={photos}
       />
+      {isModalOpen && (
+        <PhotoDetailsModal
+          isModalOpen={isModalOpen}
+          toggleModal={toggleModal}
+          photos={photoData}
+          toggleFavs={toggleFavs}
+          isFav={isFav}
+          isFavPhotoExist={isFavPhotoExist}
+        />
+      )}
     </div>
   );
 };

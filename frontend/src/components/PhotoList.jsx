@@ -62,7 +62,7 @@ const sampleDataForPhotoList = [
 ];
 
 const PhotoList = (props) => {
-  const { photos, toggleFavs, isFav } = props;
+  const { photos, toggleFavs, isFav, toggleModal, sendPhotoData } = props;
   return (
     <ul className="photo-list">
       {photos.map((photo) => (
@@ -71,6 +71,8 @@ const PhotoList = (props) => {
           photo={photo}
           toggleFavs={toggleFavs}
           isFav={isFav}
+          toggleModal={toggleModal}
+          sendPhotoData={sendPhotoData}
         />
       ))}
     </ul>
