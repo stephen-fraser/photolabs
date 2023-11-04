@@ -34,7 +34,7 @@ const App = () => {
         <PhotoDetailsModal
           isModalOpen={isModalOpen}
           toggleModal={toggleModal}
-          photos={photoData}
+          photo={photoData}
           toggleFavs={toggleFavs}
           isFav={isFav}
           isFavPhotoExist={isFavPhotoExist}
