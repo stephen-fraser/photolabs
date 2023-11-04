@@ -1,20 +1,18 @@
 import { useReducer } from "react";
+import axios from "axios";
 
-// Define the initial state
 const initialState = {
   favs: [],
   isModalOpen: false,
   photoData: [],
 };
 
-// Define action types
 const actionTypes = {
   TOGGLE_FAV: "TOGGLE_FAV",
   TOGGLE_MODAL: "TOGGLE_MODAL",
   SET_PHOTO_DATA: "SET_PHOTO_DATA",
 };
 
-// Define the reducer function
 const reducer = (state, action) => {
   switch (action.type) {
     case actionTypes.TOGGLE_FAV:
