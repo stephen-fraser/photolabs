@@ -1,16 +1,18 @@
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 import axios from "axios";
 
 const initialState = {
   favs: [],
   isModalOpen: false,
+  modalPhotoData: [],
   photoData: [],
+  topicData: [],
 };
 
 const actionTypes = {
   TOGGLE_FAV: "TOGGLE_FAV",
   TOGGLE_MODAL: "TOGGLE_MODAL",
-  SET_PHOTO_DATA: "SET_PHOTO_DATA",
+  SET_MODAL_PHOTO_DATA: "SET_MODAL_PHOTO_DATA",
 };
 
 const reducer = (state, action) => {
@@ -28,10 +30,10 @@ const reducer = (state, action) => {
         ...state,
         isModalOpen: !state.isModalOpen,
       };
-    case actionTypes.SET_PHOTO_DATA:
+    case actionTypes.SET_MODAL_PHOTO_DATA:
       return {
         ...state,
-        photoData: action.photoData,
+        modalPhotoData: action.modalPhotoData,
       };
     default:
       return state;
@@ -49,15 +51,18 @@ const useApplicationData = () => {
     dispatch({ type: actionTypes.TOGGLE_MODAL });
   };
 
-  const sendPhotoData = (photoObj) => {
-    dispatch({ type: actionTypes.SET_PHOTO_DATA, photoData: photoObj });
+  const sendModalPhotoData = (photoObj) => {
+    dispatch({
+      type: actionTypes.SET_MODAL_PHOTO_DATA,
+      modalPhotoData: photoObj,
+    });
   };
 
   return {
     state,
     toggleFavs,
     toggleModal,
-    sendPhotoData,
+    sendModalPhotoData,
   };
 };
 

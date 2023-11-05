@@ -13,19 +13,20 @@ const HomeRoute = (props) => {
     isFav,
     isFavPhotoExist,
     toggleModal,
-    sendPhotoData,
+    sendModalPhotoData,
     photos,
+    topics,
   } = props;
 
   return (
     <div className="home-route">
-      <TopNavigation isFavPhotoExist={isFavPhotoExist} />
+      <TopNavigation isFavPhotoExist={isFavPhotoExist} topics={topics} />
       <PhotoList
         photos={photos}
         toggleFavs={toggleFavs}
         isFav={isFav}
         toggleModal={toggleModal}
-        sendPhotoData={sendPhotoData}
+        sendModalPhotoData={sendModalPhotoData}
       />
     </div>
   );

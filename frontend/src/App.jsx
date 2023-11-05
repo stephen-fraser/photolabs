@@ -7,16 +7,18 @@ import { useApplicationData } from "hooks/useApplicationData";
 
 //Data
 import photos from "mocks/photos";
+import topics from "mocks/topics";
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
   const {
-    state: { favs, isModalOpen, photoData },
+    state: { favs, isModalOpen, modalPhotoData },
     toggleFavs,
     toggleModal,
-    sendPhotoData,
+    sendModalPhotoData,
   } = useApplicationData();
 
+  // helpers (refactor later if time permits)
   const isFav = (id) => favs.includes(id);
   const isFavPhotoExist = favs.length > 0;
 
@@ -27,14 +29,15 @@ const App = () => {
         isFav={isFav}
         isFavPhotoExist={isFavPhotoExist}
         toggleModal={toggleModal}
-        sendPhotoData={sendPhotoData}
+        sendModalPhotoData={sendModalPhotoData}
         photos={photos}
+        topics={topics}
       />
       {isModalOpen && (
         <PhotoDetailsModal
           isModalOpen={isModalOpen}
           toggleModal={toggleModal}
-          photo={photoData}
+          photo={modalPhotoData}
           toggleFavs={toggleFavs}
           isFav={isFav}
           isFavPhotoExist={isFavPhotoExist}

@@ -7,11 +7,8 @@ import FavBadge from "./FavBadge";
 // SASS
 import "../styles/TopNavigationBar.scss";
 
-// Data
-import topics from "mocks/topics";
-
 const TopNavigation = (props) => {
-  const { isFavPhotoExist } = props;
+  const { isFavPhotoExist, topics } = props;
   return (
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>

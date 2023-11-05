@@ -7,7 +7,7 @@ import PhotoListItem from "./PhotoListItem";
 import "../styles/PhotoList.scss";
 
 const PhotoList = (props) => {
-  const { photos, toggleFavs, isFav, toggleModal, sendPhotoData } = props;
+  const { photos, toggleFavs, isFav, toggleModal, sendModalPhotoData } = props;
   return (
     <ul className="photo-list">
       {photos.map((photo) => (
@@ -17,7 +17,7 @@ const PhotoList = (props) => {
           toggleFavs={toggleFavs}
           isFav={isFav}
           toggleModal={toggleModal}
-          sendPhotoData={sendPhotoData}
+          sendModalPhotoData={sendModalPhotoData}
         />
       ))}
     </ul>

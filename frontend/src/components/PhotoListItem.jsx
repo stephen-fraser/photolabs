@@ -3,10 +3,10 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
-  const { photo, toggleFavs, isFav, toggleModal, sendPhotoData } = props;
+  const { photo, toggleFavs, isFav, toggleModal, sendModalPhotoData } = props;
 
   const handlePhotoClick = () => {
-    sendPhotoData(photo);
+    sendModalPhotoData(photo);
     toggleModal();
   };
 
