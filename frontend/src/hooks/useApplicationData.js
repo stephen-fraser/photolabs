@@ -89,12 +89,20 @@ const useApplicationData = () => {
   };
 
   useEffect(() => {
-    axios("/api/photos").then((response) =>
-      dispatch({ type: actionTypes.SET_PHOTO_DATA, payload: response.data })
-    );
-    axios("/api/topics").then((response) =>
-      dispatch({ type: actionTypes.SET_TOPIC_DATA, payload: response.data })
-    );
+    Promise.all([axios("/api/photos"), axios("/api/topics")])
+      .then(([photoResponse, topicResponse]) => {
+        dispatch({
+          type: actionTypes.SET_PHOTO_DATA,
+          payload: photoResponse.data,
+        });
+        dispatch({
+          type: actionTypes.SET_TOPIC_DATA,
+          payload: topicResponse.data,
+        });
+      })
+      .catch((error) => {
+        console.log("Error fetching data: ", error);
+      });
   }, []);
 
   useEffect(() => {
