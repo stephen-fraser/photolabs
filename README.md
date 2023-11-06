@@ -2,13 +2,11 @@
 
 PhotoLabs is a React-based single page application (SPA) for users to view and favourite submitted photos by topics.
 
-## Background
-
 This project was completed as a part of my schooling through Lighthouse Labs (https://www.lighthouselabs.ca).
 
-## End Product Photos
+## Final Product Photos
 
-Home Page with favourited photos
+Home Page View with favourited photos
 
 !["View of Home Page with favourited photos"](docs/homeView.png)
 
