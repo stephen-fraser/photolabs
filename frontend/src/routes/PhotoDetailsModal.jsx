@@ -6,7 +6,8 @@ import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoList from "components/PhotoList";
 
 const PhotoDetailsModal = (props) => {
-  const { toggleModal, toggleFavs, isFav, photo } = props;
+  const { toggleModal, toggleFavs, favs, photo } = props;
+  const isFav = (id) => favs.includes(id);
 
   return (
     <div className="photo-details-modal">

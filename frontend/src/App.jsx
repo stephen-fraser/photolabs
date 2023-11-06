@@ -15,16 +15,11 @@ const App = () => {
     getPhotosByTopicId,
   } = useApplicationData();
 
-  // helpers (refactor later if time permits)
-  const isFav = (id) => favs.includes(id);
-  const isFavPhotoExist = favs.length > 0;
-
   return (
     <div className="App">
       <HomeRoute
         toggleFavs={toggleFavs}
-        isFav={isFav}
-        isFavPhotoExist={isFavPhotoExist}
+        favs={favs}
         toggleModal={toggleModal}
         sendModalPhotoData={sendModalPhotoData}
         photos={photoData}
@@ -37,8 +32,7 @@ const App = () => {
           toggleModal={toggleModal}
           photo={modalPhotoData}
           toggleFavs={toggleFavs}
-          isFav={isFav}
-          isFavPhotoExist={isFavPhotoExist}
+          favs={favs}
         />
       )}
     </div>

@@ -10,14 +10,16 @@ import "../styles/HomeRoute.scss";
 const HomeRoute = (props) => {
   const {
     toggleFavs,
-    isFav,
-    isFavPhotoExist,
+    favs,
     toggleModal,
     sendModalPhotoData,
     photos,
     topics,
     getPhotosByTopicId,
   } = props;
+
+  const isFav = (id) => favs.includes(id);
+  const isFavPhotoExist = favs.length > 0;
 
   return (
     <div className="home-route">
