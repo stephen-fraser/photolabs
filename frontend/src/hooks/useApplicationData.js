@@ -89,19 +89,17 @@ const useApplicationData = () => {
   };
 
   useEffect(() => {
-    axios("http://localhost:8001/api/photos").then((response) =>
+    axios("/api/photos").then((response) =>
       dispatch({ type: actionTypes.SET_PHOTO_DATA, payload: response.data })
     );
-    axios("http://localhost:8001/api/topics").then((response) =>
+    axios("/api/topics").then((response) =>
       dispatch({ type: actionTypes.SET_TOPIC_DATA, payload: response.data })
     );
   }, []);
 
   useEffect(() => {
     if (state.selectedTopic) {
-      axios(
-        `http://localhost:8001/api/topics/photos/${state.selectedTopic}`
-      ).then((response) =>
+      axios(`/api/topics/photos/${state.selectedTopic}`).then((response) =>
         dispatch({ type: actionTypes.SET_PHOTO_DATA, payload: response.data })
       );
     }
