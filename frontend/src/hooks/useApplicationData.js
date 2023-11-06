@@ -81,11 +81,16 @@ const useApplicationData = () => {
   };
 
   const getPhotosByTopicId = (topicId) => {
-    dispatch({
-      type: actionTypes.SET_PHOTOS_BY_TOPIC,
-      payload: topicId,
-    });
-    console.log(state.selectedTopic);
+    if (topicId === 0) {
+      axios(`/api/photos`).then((response) =>
+        dispatch({ type: actionTypes.SET_PHOTO_DATA, payload: response.data })
+      );
+    } else {
+      dispatch({
+        type: actionTypes.SET_PHOTOS_BY_TOPIC,
+        payload: topicId,
+      });
+    }
   };
 
   useEffect(() => {
