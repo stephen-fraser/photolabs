@@ -18,20 +18,17 @@ const HomeRoute = (props) => {
     getPhotosByTopicId,
   } = props;
 
-  const isFav = (id) => favs.includes(id);
-  const isFavPhotoExist = favs.length > 0;
-
   return (
     <div className="home-route">
       <TopNavigation
-        isFavPhotoExist={isFavPhotoExist}
+        favs={favs}
         topics={topics}
         getPhotosByTopicId={getPhotosByTopicId}
       />
       <PhotoList
         photos={photos}
         toggleFavs={toggleFavs}
-        isFav={isFav}
+        favs={favs}
         toggleModal={toggleModal}
         sendModalPhotoData={sendModalPhotoData}
       />

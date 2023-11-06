@@ -3,7 +3,11 @@ import FavIcon from "./FavIcon";
 
 import "../styles/FavBadge.scss";
 
-const FavBadge = ({ isFavPhotoExist }) => {
+const FavBadge = (props) => {
+  const { favs } = props;
+
+  const isFavPhotoExist = favs.length > 0;
+
   return (
     <div className="fav-badge">
       {!isFavPhotoExist && (
