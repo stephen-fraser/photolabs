@@ -5,17 +5,14 @@ import HomeRoute from "routes/HomeRoute";
 import PhotoDetailsModal from "routes/PhotoDetailsModal";
 import { useApplicationData } from "hooks/useApplicationData";
 
-//Data
-import photos from "mocks/photos";
-import topics from "mocks/topics";
-
 // Note: Rendering a single component to build components in isolation
 const App = () => {
   const {
-    state: { favs, isModalOpen, modalPhotoData },
+    state: { favs, isModalOpen, modalPhotoData, photoData, topicData },
     toggleFavs,
     toggleModal,
     sendModalPhotoData,
+    getPhotosByTopicId,
   } = useApplicationData();
 
   // helpers (refactor later if time permits)
@@ -30,8 +27,9 @@ const App = () => {
         isFavPhotoExist={isFavPhotoExist}
         toggleModal={toggleModal}
         sendModalPhotoData={sendModalPhotoData}
-        photos={photos}
-        topics={topics}
+        photos={photoData}
+        topics={topicData}
+        getPhotosByTopicId={getPhotosByTopicId}
       />
       {isModalOpen && (
         <PhotoDetailsModal

@@ -16,11 +16,16 @@ const HomeRoute = (props) => {
     sendModalPhotoData,
     photos,
     topics,
+    getPhotosByTopicId,
   } = props;
 
   return (
     <div className="home-route">
-      <TopNavigation isFavPhotoExist={isFavPhotoExist} topics={topics} />
+      <TopNavigation
+        isFavPhotoExist={isFavPhotoExist}
+        topics={topics}
+        getPhotosByTopicId={getPhotosByTopicId}
+      />
       <PhotoList
         photos={photos}
         toggleFavs={toggleFavs}
