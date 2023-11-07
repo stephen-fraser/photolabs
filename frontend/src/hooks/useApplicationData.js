@@ -8,6 +8,7 @@ const initialState = {
   photoData: [],
   topicData: [],
   selectedTopic: null,
+  isFavModalOpen: false,
 };
 
 const actionTypes = {
@@ -17,6 +18,7 @@ const actionTypes = {
   SET_PHOTO_DATA: "SET_PHOTO_DATA",
   SET_TOPIC_DATA: "SET_TOPIC_DATA",
   SET_PHOTOS_BY_TOPIC: "SET_PHOTOS_BY_TOPIC",
+  TOGGLE_FAV_MODAL: "TOGGLE_FAV_MODAL",
 };
 
 const reducer = (state, action) => {
@@ -38,6 +40,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         modalPhotoData: action.modalPhotoData,
+      };
+    case actionTypes.TOGGLE_FAV_MODAL:
+      console.log("test");
+      return {
+        ...state,
+        isFavModalOpen: !state.isFavModalOpen,
       };
     case actionTypes.SET_PHOTO_DATA:
       return {
@@ -69,6 +77,10 @@ const useApplicationData = () => {
     dispatch({ type: actionTypes.TOGGLE_FAV, id });
   };
 
+  const toggleFavModal = () => {
+    dispatch({ type: actionTypes.TOGGLE_FAV_MODAL });
+  };
+
   const toggleModal = () => {
     dispatch({ type: actionTypes.TOGGLE_MODAL });
   };
@@ -91,6 +103,27 @@ const useApplicationData = () => {
         payload: topicId,
       });
     }
+  };
+
+  const getFavouritePhotos = (favs) => {
+    const filterPhotosById = (photosArray) => {
+      return photosArray.filter((photo) => favs.includes(photo.id));
+    };
+
+    axios(`/api/photos`)
+      .then((response) => {
+        const favPhotos = filterPhotosById(response.data);
+        console.log(response.data);
+        console.log(favPhotos);
+        return favPhotos;
+      })
+      .then((favPhotos) => {
+        dispatch({ type: actionTypes.SET_PHOTO_DATA, payload: favPhotos.data });
+        console.log(favPhotos.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching favourite photos:", error);
+      });
   };
 
   useEffect(() => {
@@ -124,6 +157,8 @@ const useApplicationData = () => {
     toggleModal,
     sendModalPhotoData,
     getPhotosByTopicId,
+    getFavouritePhotos,
+    toggleFavModal,
   };
 };
 

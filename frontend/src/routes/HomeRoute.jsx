@@ -16,6 +16,8 @@ const HomeRoute = (props) => {
     photos,
     topics,
     getPhotosByTopicId,
+    getFavouritePhotos,
+    toggleFavModal,
   } = props;
 
   return (
@@ -24,6 +26,8 @@ const HomeRoute = (props) => {
         favs={favs}
         topics={topics}
         getPhotosByTopicId={getPhotosByTopicId}
+        getFavouritePhotos={getFavouritePhotos}
+        toggleFavModal={toggleFavModal}
       />
       <PhotoList
         photos={photos}

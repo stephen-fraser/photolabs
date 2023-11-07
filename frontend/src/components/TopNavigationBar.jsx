@@ -8,7 +8,13 @@ import FavBadge from "./FavBadge";
 import "../styles/TopNavigationBar.scss";
 
 const TopNavigation = (props) => {
-  const { favs, topics, getPhotosByTopicId } = props;
+  const {
+    favs,
+    topics,
+    getPhotosByTopicId,
+    getFavouritePhotos,
+    toggleFavModal,
+  } = props;
 
   return (
     <div className="top-nav-bar">
@@ -16,7 +22,11 @@ const TopNavigation = (props) => {
         PhotoLabs
       </span>
       <TopicList topics={topics} getPhotosByTopicId={getPhotosByTopicId} />
-      <FavBadge favs={favs} />
+      <FavBadge
+        favs={favs}
+        toggleFavModal={toggleFavModal}
+        getFavouritePhotos={getFavouritePhotos}
+      />
     </div>
   );
 };
