@@ -107,9 +107,9 @@ const useApplicationData = () => {
     }
   };
 
-  // use effect to perform side effects - in this case an axios call
-  // utilize promise all - if either topics or photos axios request fail, then the whole promise fails
-  // ensures both topics and photos load - if either fail the catch will log the error
+  // use effect to perform side effects -  axios call
+  // utilize promise all - this returned promise fulfills when all of the input's (axios get photo and axios get topics) promises fulfill
+  // it rejects if either fail the catch will log the error - ensures both topics and photos load
   useEffect(() => {
     Promise.all([axios("/api/photos"), axios("/api/topics")])
       .then(([photoResponse, topicResponse]) => {
@@ -129,7 +129,7 @@ const useApplicationData = () => {
   }, []);
 
   // use effect to perfom side effects for axios call
-  // filters photos based on selected topic
+  // axios call to view photos based on selected topic
   useEffect(() => {
     if (state.selectedTopic) {
       axios(`/api/topics/photos/${state.selectedTopic}`).then((response) =>
