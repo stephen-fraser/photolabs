@@ -95,9 +95,17 @@ const useApplicationData = () => {
   // if statement for stretch functionality to return to viewing all the photos by clicking on the PhotoLabs logo in top navigation
   const getPhotosByTopicId = (topicId) => {
     if (topicId === 0) {
-      axios(`/api/photos`).then((response) =>
-        dispatch({ type: actionTypes.SET_PHOTO_DATA, payload: response.data })
-      );
+      axios(`/api/photos`)
+        .then((response) => {
+          dispatch({
+            type: actionTypes.SET_PHOTO_DATA,
+            payload: response.data,
+          });
+        })
+        // catch block to handle error
+        .catch((error) => {
+          console.error("Error fetching photos:", error);
+        });
     } else {
       // changes the topicId state
       dispatch({
@@ -122,6 +130,7 @@ const useApplicationData = () => {
           payload: topicResponse.data,
         });
       })
+      // catch block to handle error
       .catch((error) => {
         console.log("Error fetching data: ", error);
       });
@@ -132,11 +141,19 @@ const useApplicationData = () => {
   // axios call to view photos based on selected topic
   useEffect(() => {
     if (state.selectedTopic) {
-      axios(`/api/topics/photos/${state.selectedTopic}`).then((response) =>
-        dispatch({ type: actionTypes.SET_PHOTO_DATA, payload: response.data })
-      );
+      axios(`/api/topics/photos/${state.selectedTopic}`)
+        .then((response) => {
+          dispatch({
+            type: actionTypes.SET_PHOTO_DATA,
+            payload: response.data,
+          });
+        })
+        // catch block to handle error
+        .catch((error) => {
+          console.log("Error fetching photos based on topic: ", error);
+        });
     }
-    // triggered by a changed in selected topic
+    // The effect is triggered by a change in the selected topic.
   }, [state.selectedTopic]);
 
   return {
