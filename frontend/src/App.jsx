@@ -32,6 +32,7 @@ const App = () => {
           photo={modalPhotoData}
           toggleFavs={toggleFavs}
           favs={favs}
+          sendModalPhotoData={sendModalPhotoData}
         />
       )}
     </div>
